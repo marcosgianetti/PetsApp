@@ -20,7 +20,7 @@ Pode mostrar as informações que julgar necessário.
 ❌Login persistido na memória, ou seja, ao fechar o APP e abri-lo novamente, o usuário já deverá estar logado.
 
 #Ideias
-❌Tela de splash screen png welcome_cat.
+✔️Tela de splash screen png.
 ❌Tela de login com svg everyday_life.
 ❌Criação de testes.
 ✔️Tela de listagem, oferecer a opção de listar somente cães ou gatos.

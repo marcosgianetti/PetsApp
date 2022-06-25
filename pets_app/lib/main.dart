@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pets_app/ui/pages/login/login_screen.dart';
 
 import 'ui/pages/home/list_pets_screen.dart';
 import 'ui/pages/profile/profile.dart';
@@ -18,12 +19,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
       ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-      ),
       themeMode: ThemeMode.dark,
       routes: {
-        '/': ((context) => const ListPetsScreen()),
+        '/': ((context) => const LoginScreen()),
+        '/pets': ((context) => const ListPetsScreen()),
         ProfileScreen.routeName: ((context) => ProfileScreen()),
       },
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class GlobalWidgets {
@@ -93,6 +94,23 @@ class GlobalWidgets {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Text(text, style: TextStyle(color: textcolor, fontSize: fontSize)),
+    );
+  }
+
+  static Widget svgImage(
+    BuildContext context, {
+    required String svgPath,
+    double? width,
+    double? height,
+    EdgeInsets margin = const EdgeInsets.fromLTRB(0, 8, 0, 0),
+  }) {
+    return Container(
+      margin: margin,
+      child: SvgPicture.asset(
+        svgPath,
+        width: width,
+        height: height,
+      ),
     );
   }
 }

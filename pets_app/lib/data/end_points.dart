@@ -2,7 +2,7 @@ import '../domain/entities/tools/enum_values.dart';
 
 class EndPoint {
   static String listPets({
-    int limit = 4,
+    int limit = 10,
     int? page,
     OderType? oderType,
     SizeType? sizeType,

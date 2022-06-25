@@ -40,6 +40,7 @@ dependencies:
   material_design_icons_flutter: ^5.0.6595
   crypto: ^3.0.2
   fluttertoast: ^8.0.9
+  flutter_svg: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -72,3 +73,4 @@ flutter:
   
   assets:
     - lib/assets/png/splash.png
+    - lib/assets/svg/everyday_life.svg

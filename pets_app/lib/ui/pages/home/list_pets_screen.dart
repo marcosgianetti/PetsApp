@@ -123,7 +123,7 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
             controller: _scrollController,
             itemCount: _controller.loading ? lenght + 1 : lenght,
             itemBuilder: (context, index) {
-              if (index == lenght) {
+              if (index == lenght - 1) {
                 return const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Center(child: CircularProgressIndicator.adaptive()),
