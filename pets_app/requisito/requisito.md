@@ -21,7 +21,7 @@ Pode mostrar as informações que julgar necessário.
 
 #Ideias
 ✔️Tela de splash screen png.
-❌Tela de login com svg everyday_life.
+✔️Tela de login com svg everyday_life.
 ❌Criação de testes.
 ✔️Tela de listagem, oferecer a opção de listar somente cães ou gatos.
 ✔️LazyList
