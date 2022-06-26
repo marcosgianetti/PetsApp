@@ -59,7 +59,10 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
                     value: index,
                     child: Row(
                       children: [
-                        Icon(petSelected ? Icons.check_rounded : Icons.close_rounded),
+                        Icon(
+                          petSelected ? Icons.check_rounded : Icons.close_rounded,
+                          color: petSelected ? ColorsApp.itenSelected : ColorsApp.itenUnselected,
+                        ),
                         Text(text),
                       ],
                     ));
