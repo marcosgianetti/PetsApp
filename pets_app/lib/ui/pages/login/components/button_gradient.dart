@@ -40,29 +40,31 @@ class ButtonGradient extends StatelessWidget {
           color: Colors.deepPurple.shade300,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: ElevatedButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-            ),
-            minimumSize: MaterialStateProperty.all(Size(width, 50)),
-            backgroundColor: MaterialStateProperty.all(Colors.transparent),
-            elevation: MaterialStateProperty.all(0),
-            shadowColor: MaterialStateProperty.all(Colors.transparent),
-          ),
-          onPressed: onClick,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 10),
-            child: Text(
-              text,
-              style: TextStyle(
-                fontSize: size,
-                fontFamily: font,
-                color: Colors.white,
+        child: loading
+            ? const CircularProgressIndicator.adaptive()
+            : ElevatedButton(
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                  ),
+                  minimumSize: MaterialStateProperty.all(Size(width, 50)),
+                  backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                  elevation: MaterialStateProperty.all(0),
+                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                ),
+                onPressed: onClick,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      fontSize: size,
+                      fontFamily: font,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
       ),
     );
   }

@@ -17,7 +17,7 @@ Pode mostrar as informações que julgar necessário.
 ❌Fácil troca de fontes e cores no código.
 ✔️Fácil adaptação a novos providers (APIs).
 ❌APK do APP.
-❌Login persistido na memória, ou seja, ao fechar o APP e abri-lo novamente, o usuário já deverá estar logado.
+✔️Login persistido na memória, ou seja, ao fechar o APP e abri-lo novamente, o usuário já deverá estar logado.
 
 #Ideias
 ✔️Tela de splash screen png.

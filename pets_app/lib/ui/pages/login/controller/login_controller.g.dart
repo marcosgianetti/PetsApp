@@ -41,6 +41,55 @@ mixin _$LoginController on _LoginController, Store {
     });
   }
 
+  late final _$rememberMeAtom =
+      Atom(name: '_LoginController.rememberMe', context: context);
+
+  @override
+  bool get rememberMe {
+    _$rememberMeAtom.reportRead();
+    return super.rememberMe;
+  }
+
+  @override
+  set rememberMe(bool value) {
+    _$rememberMeAtom.reportWrite(value, super.rememberMe, () {
+      super.rememberMe = value;
+    });
+  }
+
+  late final _$_loadingAtom =
+      Atom(name: '_LoginController._loading', context: context);
+
+  @override
+  bool get _loading {
+    _$_loadingAtom.reportRead();
+    return super._loading;
+  }
+
+  @override
+  set _loading(bool value) {
+    _$_loadingAtom.reportWrite(value, super._loading, () {
+      super._loading = value;
+    });
+  }
+
+  late final _$textEmailLoginControllerAtom =
+      Atom(name: '_LoginController.textEmailLoginController', context: context);
+
+  @override
+  TextEditingController get textEmailLoginController {
+    _$textEmailLoginControllerAtom.reportRead();
+    return super.textEmailLoginController;
+  }
+
+  @override
+  set textEmailLoginController(TextEditingController value) {
+    _$textEmailLoginControllerAtom
+        .reportWrite(value, super.textEmailLoginController, () {
+      super.textEmailLoginController = value;
+    });
+  }
+
   late final _$getProfileFromApiAsyncAction =
       AsyncAction('_LoginController.getProfileFromApi', context: context);
 
@@ -50,11 +99,27 @@ mixin _$LoginController on _LoginController, Store {
         .run(() => super.getProfileFromApi(context));
   }
 
+  late final _$_LoginControllerActionController =
+      ActionController(name: '_LoginController', context: context);
+
+  @override
+  void changeRememberMe({bool? value}) {
+    final _$actionInfo = _$_LoginControllerActionController.startAction(
+        name: '_LoginController.changeRememberMe');
+    try {
+      return super.changeRememberMe(value: value);
+    } finally {
+      _$_LoginControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 errorText: ${errorText},
-users: ${users}
+users: ${users},
+rememberMe: ${rememberMe},
+textEmailLoginController: ${textEmailLoginController}
     ''';
   }
 }

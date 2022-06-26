@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx/mobx.dart';
 import 'package:pets_app/ui/pages/login/controller/login_controller.dart';
 
 import '../../components/compnents.dart';
 import 'components/components.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final LoginController _controller = LoginController();
+  @override
+  void initState() {
+    _controller.checkCache(context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,18 +76,29 @@ class LoginScreen extends StatelessWidget {
                         errorText: _controller.errorText,
                       );
                     }),
-                    CheckboxListTile(
-                      value: true,
-                      onChanged: (value) {},
-                      title: const PetText("Lembrar meu usuário"),
-                      controlAffinity: ListTileControlAffinity.leading,
+                    Observer(
+                      builder: (_) {
+                        return CheckboxListTile(
+                          value: _controller.rememberMe,
+                          onChanged: (value) {
+                            _controller.changeRememberMe(value: value);
+                          },
+                          title: const PetText("Lembrar meu usuário"),
+                          controlAffinity: ListTileControlAffinity.leading,
+                        );
+                      },
                     ),
                     const PetText('Esqueceu o e-mail'),
-                    ButtonGradient(
-                      text: 'Login',
-                      width: 300,
-                      onClick: () {
-                        _controller.getProfileFromApi(context);
+                    Observer(
+                      builder: (_) {
+                        return ButtonGradient(
+                          text: 'Login',
+                          width: 300,
+                          loading: _controller.loading,
+                          onClick: () {
+                            _controller.getProfileFromApi(context);
+                          },
+                        );
                       },
                     ),
                   ],
