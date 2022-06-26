@@ -1,9 +1,9 @@
 #Requisitos obrigatórios
 ✔️O APP deverá ser escrito em dart utilizando o flutter.
 
-❌Criação de um json contendo uma listagem de e-mails que podem acessar o aplicativo, ou seja, somente pessoas que estiverem com o e-mail nesta lista, poderão logar.
+✔️Criação de um json contendo uma listagem de e-mails que podem acessar o aplicativo, ou seja, somente pessoas que estiverem com o e-mail nesta lista, poderão logar.
 
-❌Login
+✔️Login
 Nesta tela validaremos apenas o e-mail (json) da pessoa que está tentando acessar o aplicativo.
 
 ✔️Listagem dos pets

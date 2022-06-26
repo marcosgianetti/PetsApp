@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
+import 'package:pets_app/ui/pages/login/controller/login_controller.dart';
 
 import '../../components/compnents.dart';
 import 'components/components.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
+  LoginScreen({Key? key}) : super(key: key);
+  final LoginController _controller = LoginController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,11 +57,14 @@ class LoginScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: const PetText("Entrar com e-mail", fontWeight: FontWeight.bold),
                     ),
-                    PetTextFormField(
-                      controller: TextEditingController(),
-                      hintText: "E-mail",
-                      keyboardType: TextInputType.emailAddress,
-                    ),
+                    Observer(builder: (_) {
+                      return PetTextFormField(
+                        controller: _controller.textEmailLoginController,
+                        hintText: "E-mail",
+                        keyboardType: TextInputType.emailAddress,
+                        errorText: _controller.errorText,
+                      );
+                    }),
                     CheckboxListTile(
                       value: true,
                       onChanged: (value) {},
@@ -66,7 +72,13 @@ class LoginScreen extends StatelessWidget {
                       controlAffinity: ListTileControlAffinity.leading,
                     ),
                     const PetText('Esqueceu o e-mail'),
-                    const ButtonGradient(text: 'Login', width: 300),
+                    ButtonGradient(
+                      text: 'Login',
+                      width: 300,
+                      onClick: () {
+                        _controller.getProfileFromApi(context);
+                      },
+                    ),
                   ],
                 ),
               ),

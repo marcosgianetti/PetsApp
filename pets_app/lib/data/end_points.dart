@@ -23,6 +23,8 @@ class EndPoint {
   }
 
   static String imageID(String imageID) => "images/$imageID";
+
+  static String listUsers = "https://raw.githubusercontent.com/marcosgianetti/PetsApp/main/emailsList/users.txt.txt";
 }
 
 enum OderType { random, asc, desc }

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.dark,
       routes: {
-        '/': ((context) => const LoginScreen()),
+        '/': ((context) => LoginScreen()),
         '/pets': ((context) => const ListPetsScreen()),
         ProfileScreen.routeName: ((context) => ProfileScreen()),
       },
