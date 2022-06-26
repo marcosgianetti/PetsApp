@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pets_app/data/provider/colors/colors_app.dart';
 import 'package:pets_app/ui/pages/login/login_screen.dart';
 
 import 'ui/pages/home/list_pets_screen.dart';
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
       title: 'Marvel',
       theme: ThemeData(
         brightness: Brightness.light,
+        appBarTheme: AppBarTheme(
+          backgroundColor: ColorsApp.secondCompanyColor,
+        ),
       ),
       themeMode: ThemeMode.dark,
       routes: {

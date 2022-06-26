@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pets_app/data/provider/colors/colors_app.dart';
 
 class ButtonGradient extends StatelessWidget {
   const ButtonGradient({
@@ -31,11 +32,7 @@ class ButtonGradient extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             stops: const [0.0, 1.0],
-            colors: colors ??
-                [
-                  const Color.fromARGB(204, 77, 129, 213),
-                  const Color.fromARGB(255, 0, 71, 186),
-                ],
+            colors: colors ?? ColorsApp.gradientColor,
           ),
           color: Colors.deepPurple.shade300,
           borderRadius: BorderRadius.circular(10),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:pets_app/data/provider/colors/colors_app.dart';
 import 'package:pets_app/ui/pages/login/controller/login_controller.dart';
 
 import '../../components/compnents.dart';
@@ -31,17 +32,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 context,
                 height: MediaQuery.of(context).size.height / 3,
                 svgPath: "lib/assets/svg/everyday_life.svg",
-                margin: EdgeInsets.all(8),
+                margin: const EdgeInsets.all(8),
               ),
               const PetText('Pet App', size: 32, fontWeight: FontWeight.w300),
               Container(
                 margin: const EdgeInsets.all(16),
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                   boxShadow: [
                     BoxShadow(
-                      color: Color.fromARGB(255, 0, 71, 186),
+                      color: ColorsApp.secondCompanyColor,
                       spreadRadius: 1,
                       blurRadius: 10,
                     ),
@@ -104,9 +105,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               const PetText('Visualizar lista de e-mail'),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               const PetText('Econtre-me no Linkedin😼'),
             ],
           ),

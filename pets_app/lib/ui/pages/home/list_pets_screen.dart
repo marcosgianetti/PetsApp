@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:pets_app/data/provider/cacheLogin/cache_login.dart';
+import 'package:pets_app/data/provider/colors/colors_app.dart';
 
 import '../../../domain/entities/entities.dart';
 import '../../components/compnents.dart';
@@ -36,6 +38,7 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
             return GlobalWidgets.textTitlecenterNoOver(text: strTitle);
           },
         ),
+        // backgroundColor: ColorsApp.secondCompanyColor,
         actions: [
           PopupMenuButton(
             itemBuilder: (BuildContext context) {
@@ -81,6 +84,15 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
             tooltip: 'Filtrar pe',
             icon: const Icon(Icons.filter_list_outlined),
           ),
+          IconButton(
+            onPressed: () async {
+              await CacheLogin.clean();
+              if (!mounted) return;
+              Navigator.pushReplacementNamed(context, "/");
+            },
+            icon: Icon(Icons.logout_rounded),
+            tooltip: "Sair",
+          )
         ],
       ),
       body: FutureBuilder(
@@ -121,7 +133,7 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
           int lenght = _controller.listPet.length;
           return ListView.builder(
             controller: _scrollController,
-            itemCount: _controller.loading ? lenght + 1 : lenght,
+            itemCount: lenght,
             itemBuilder: (context, index) {
               if (index == lenght - 1) {
                 return const Padding(

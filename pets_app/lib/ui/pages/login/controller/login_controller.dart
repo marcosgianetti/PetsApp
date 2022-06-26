@@ -51,7 +51,9 @@ abstract class _LoginController with Store {
         for (var element in users) {
           if (element.email == textEmailLoginController.text) {
             containsEmailAtList = true;
-            CacheLogin.setLoginResponse(user: element);
+            if (rememberMe) {
+              CacheLogin.setLoginResponse(user: element);
+            }
             break;
           }
         }

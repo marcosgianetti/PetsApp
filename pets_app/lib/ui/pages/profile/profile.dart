@@ -84,22 +84,26 @@ class ProfileScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               pet.breeds.isNotEmpty
-                  ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _textVisibleData(content: pet.breeds.first.height.toString(), description: "Altura média: "),
-                        _textVisibleData(content: pet.breeds.first.weight.toString(), description: "Largura média: "),
-                        _textVisibleData(content: pet.breeds.first.countryCode ?? "", description: "Código do país: "),
-                        _textVisibleData(content: pet.breeds.first.lifeSpan ?? "", description: "Tempo de vida: "),
-                        _textVisibleData(content: pet.breeds.first.temperament ?? "", description: "Temperamento: "),
-                        _textVisibleData(content: pet.breeds.first.bredFor ?? "", description: "Criado para: "),
-                      ],
+                  ? SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _textVisibleData(content: pet.breeds.first.height.toString(), description: "Altura média: "),
+                          _textVisibleData(content: pet.breeds.first.weight.toString(), description: "Largura média: "),
+                          _textVisibleData(
+                              content: pet.breeds.first.countryCode ?? "", description: "Código do país: "),
+                          _textVisibleData(content: pet.breeds.first.lifeSpan ?? "", description: "Tempo de vida: "),
+                          _textVisibleData(content: pet.breeds.first.temperament ?? "", description: "Temperamento: "),
+                          _textVisibleData(content: pet.breeds.first.bredFor ?? "", description: "Criado para: "),
+                        ],
+                      ),
                     )
                   : Container(),
               pet.categories.isNotEmpty
                   ? Column(
                       children: [
-                        _textVisibleData(content: pet.categories.first.name ?? "", description: "Categoria"),
+                        _textVisibleData(content: pet.categories.first.name ?? "", description: "Categoria: "),
                       ],
                     )
                   : Container(),
