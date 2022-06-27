@@ -5,6 +5,8 @@ class ColorsApp {
   static Color secondCompanyColor = const Color.fromARGB(255, 0, 71, 186);
   static List<Color> gradientColor = [firstCompanyColor, secondCompanyColor];
 
+  static Color appbarBackgoundColor = const Color.fromARGB(255, 0, 71, 186);
+
   static Color itenUnselected = const Color.fromARGB(255, 203, 3, 3);
   static Color itenSelected = const Color.fromARGB(255, 12, 222, 19);
 }

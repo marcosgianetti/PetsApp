@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pets_app/data/provider/colors/colors_app.dart';
-import 'package:pets_app/ui/pages/login/controller/login_controller.dart';
 
+import '../../../data/provider/colors/colors_app.dart';
 import '../../components/compnents.dart';
 import 'components/components.dart';
+import 'controller/login_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);

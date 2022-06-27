@@ -154,26 +154,30 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
                   description = pet.breeds.first.name ?? '';
                 }
                 return Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 4),
+                  padding: const EdgeInsets.only(top: 8, bottom: 8),
                   child: Card(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(12.0),
                     ),
-                    margin: EdgeInsets.zero,
+                    margin: const EdgeInsets.only(top: 8, bottom: 8),
+                    elevation: 4,
                     child: Column(
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/profile', arguments: [pet.id.toString(), pet.petType]);
-                            },
-                            child: ImageFromAPI(
-                              url: pet.url ?? '',
-                            ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/profile', arguments: [pet.id.toString(), pet.petType]);
+                          },
+                          child: ImageFromAPI(
+                            url: pet.url ?? '',
                           ),
                         ),
-                        GlobalWidgets.textSimpleSize(text: description),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: PetText(
+                            description,
+                            size: 20,
+                          ),
+                        ),
                       ],
                     ),
                   ),

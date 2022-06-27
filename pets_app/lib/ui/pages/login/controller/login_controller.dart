@@ -23,6 +23,7 @@ abstract class _LoginController with Store {
   @observable
   TextEditingController textEmailLoginController = TextEditingController();
 
+  @computed
   bool get loading => _loading;
   @action
   void changeRememberMe({bool? value}) {
