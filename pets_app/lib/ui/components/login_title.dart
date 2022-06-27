@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pets_app/data/provider/font/font.dart';
 
-class PetText extends StatelessWidget {
-  const PetText(
+class TextApp extends StatelessWidget {
+  const TextApp(
     this.title, {
     Key? key,
-    this.font = "Regular",
+    this.font = Font.tite,
     this.size = 18,
     this.fontWeight,
   }) : super(key: key);

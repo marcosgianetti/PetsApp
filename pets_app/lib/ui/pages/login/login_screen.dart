@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 svgPath: "lib/assets/svg/everyday_life.svg",
                 margin: const EdgeInsets.all(8),
               ),
-              const PetText('Pet App', size: 32, fontWeight: FontWeight.w300),
+              const TextApp('Pet App', size: 32, fontWeight: FontWeight.w300),
               Container(
                 margin: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         const Padding(
                           padding: EdgeInsets.all(8.0),
-                          child: PetText(
+                          child: TextApp(
                             "Login",
                             size: 24,
                             fontWeight: FontWeight.bold,
@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Container(
                       alignment: Alignment.topLeft,
                       padding: const EdgeInsets.all(8.0),
-                      child: const PetText("Entrar com e-mail", fontWeight: FontWeight.bold),
+                      child: const TextApp("Entrar com e-mail", fontWeight: FontWeight.bold),
                     ),
                     Observer(builder: (_) {
                       return PetTextFormField(
@@ -84,12 +84,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           onChanged: (value) {
                             _controller.changeRememberMe(value: value);
                           },
-                          title: const PetText("Lembrar meu usuário"),
+                          title: const TextApp("Lembrar meu usuário"),
                           controlAffinity: ListTileControlAffinity.leading,
                         );
                       },
                     ),
-                    const PetText('Esqueceu o e-mail'),
+                    const TextApp('Esqueceu o e-mail'),
                     Observer(
                       builder: (_) {
                         return ButtonGradient(
@@ -106,9 +106,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              const PetText('Visualizar lista de e-mail'),
+              const TextApp('Visualizar lista de e-mail'),
               const SizedBox(height: 8),
-              const PetText('Econtre-me no Linkedin😼'),
+              const TextApp('Econtre-me no Linkedin😼'),
             ],
           ),
         ),

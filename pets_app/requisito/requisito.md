@@ -14,7 +14,7 @@ Essa tela será exibida ao clicar em um pet na listagem. Nesta tela, devemos mos
 Pode mostrar as informações que julgar necessário.
 
 #Requisitos que serão considerados como plus
-❌Fácil troca de fontes e cores no código.
+✔️Fácil troca de fontes e cores no código.
 ✔️Fácil adaptação a novos providers (APIs).
 ✔️APK do APP.
 ✔️Login persistido na memória, ou seja, ao fechar o APP e abri-lo novamente, o usuário já deverá estar logado.

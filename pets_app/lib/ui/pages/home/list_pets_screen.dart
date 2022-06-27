@@ -173,7 +173,7 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: PetText(
+                          child: TextApp(
                             description,
                             size: 20,
                           ),
