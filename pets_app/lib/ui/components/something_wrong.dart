@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'global_widgets.dart';
+import 'compnents.dart';
 
 class SomethingWrogn extends StatelessWidget {
   const SomethingWrogn({
@@ -13,10 +13,7 @@ class SomethingWrogn extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Icon(Icons.error_outline_outlined),
-          GlobalWidgets.textSimpleSize(text: 'Algo deu errado, tente novamente mais tarde')
-        ],
+        children: const [Icon(Icons.error_outline_outlined), TextApp('Algo deu errado, tente novamente mais tarde')],
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pets_app/ui/components/compnents.dart';
 
 class ImageFromAPI extends StatelessWidget {
   const ImageFromAPI({
@@ -24,10 +25,7 @@ class ImageFromAPI extends StatelessWidget {
         } else {
           return const Padding(
             padding: EdgeInsets.all(8.0),
-            child: SizedBox(
-              height: 32,
-              child: CircularProgressIndicator.adaptive(),
-            ),
+            child: CircularProgressIndicatorApp(),
           );
         }
       },

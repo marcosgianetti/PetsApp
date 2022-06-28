@@ -18,7 +18,7 @@ abstract class ListPetControllerBase with Store {
   bool loading = false;
   int page = 0;
   @observable
-  List<PetType> petsSelected = <PetType>[PetType.cat];
+  List<PetType> petsSelected = <PetType>[PetType.cat, PetType.dog];
 
   @action
   String changePetSelected(BuildContext context, {required PetType petType}) {
@@ -35,7 +35,7 @@ abstract class ListPetControllerBase with Store {
       petsSelected = petsSelected;
     }
     listPet.clear();
-    showPetsSelected(context);
+    //showPetsSelected(context);
     return "";
   }
 

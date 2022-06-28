@@ -51,23 +51,4 @@ void main() {
       expect(mockHomeController.listPet.length, 1);
     });
   });
-
-  ///
-  /// Não consegui tirar tempo para acabar de fazer todos os testes 😿
-  /// Meu XP com testes não é dos mais altos, mas estou farmando para conseguir matar o "mostro" hahaha 😼
-  ///
-
-  /* test('Should get api information', () async {
-    Character character = Character();
-    String end = faker.internet.httpsUrl();
-
-    MockHomeController().getCharacterFromApi(MockBuildContext());
-
-    verify(
-      client.get(
-        Uri.parse(addCredentialsToUrl("https://gateway.marvel.com/v1/public/characters")),
-        headers: any,
-      ),
-    ).captured;
-  });*/
 }

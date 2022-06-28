@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pets_app/data/provider/cacheLogin/cache_login.dart';
 import 'package:pets_app/domain/entities/entities.dart';
-import 'package:flutter/material.dart';
 
 import '../../../../data/api/api.dart';
 import '../../../../data/end_points.dart';
@@ -19,12 +18,10 @@ abstract class _LoginController with Store {
   @observable
   bool rememberMe = true;
   @observable
-  bool _loading = false;
+  bool loading = false;
   @observable
   TextEditingController textEmailLoginController = TextEditingController();
 
-  @computed
-  bool get loading => _loading;
   @action
   void changeRememberMe({bool? value}) {
     rememberMe = value ?? !rememberMe;
@@ -41,11 +38,17 @@ abstract class _LoginController with Store {
   }
 
   @action
+  void _changeLoadingState(bool loading) {
+    this.loading = loading;
+  }
+
+  @action
   Future<void> getProfileFromApi(BuildContext context) async {
     try {
-      _loading = true;
+      _changeLoadingState(true);
       var response = await ReqAPI.get(endPoint: EndPoint.listUsers);
-      _loading = false;
+      await Future.delayed(const Duration(seconds: 1));
+      _changeLoadingState(false);
       if (response.statusCode == 200) {
         users = userFromJson(response.body);
         bool containsEmailAtList = false;
@@ -71,7 +74,7 @@ abstract class _LoginController with Store {
         }
       }
     } catch (e) {
-      _loading = false;
+      _changeLoadingState(false);
       errorText = "Algo de inesperado aconteceu, tente mais tarde";
     }
   }

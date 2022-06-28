@@ -9,20 +9,30 @@ class TextApp extends StatelessWidget {
     this.font = Font.tite,
     this.size = 18,
     this.fontWeight,
+    this.textAlign,
+    this.edgeInsets,
+    this.textOverflow = TextOverflow.clip,
   }) : super(key: key);
   final String title;
   final dynamic font;
   final double size;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
+  final EdgeInsets? edgeInsets;
+  final TextOverflow textOverflow;
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      overflow: TextOverflow.ellipsis,
-      style: TextStyle(
-        fontFamily: font,
-        fontSize: size,
-        fontWeight: fontWeight,
+    return Padding(
+      padding: edgeInsets ?? EdgeInsets.zero,
+      child: Text(
+        title,
+        overflow: textOverflow,
+        style: TextStyle(
+          fontFamily: font,
+          fontSize: size,
+          fontWeight: fontWeight,
+        ),
+        textAlign: textAlign,
       ),
     );
   }

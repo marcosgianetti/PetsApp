@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:pets_app/ui/components/launchUrl/launch_url.dart';
 
 import '../../../data/provider/colors/colors_app.dart';
 import '../../components/compnents.dart';
@@ -93,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Observer(
                       builder: (_) {
                         return ButtonGradient(
-                          text: 'Login',
+                          text: _controller.loading.toString(),
                           width: 300,
                           loading: _controller.loading,
                           onClick: () {
@@ -107,8 +110,17 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 8),
               const TextApp('Visualizar lista de e-mail'),
-              const SizedBox(height: 8),
-              const TextApp('Econtre-me no Linkedin😼'),
+              TextButton(
+                  onPressed: () {
+                    LaunchUrlApp.launchURL("https://www.linkedin.com/in/marcos-gianetti/");
+                  },
+                  onLongPress: () {
+                    Clipboard.setData(const ClipboardData(text: 'https://www.linkedin.com/in/marcos-gianetti/'));
+                    Fluttertoast.showToast(
+                        msg: "Url do perfil copiado para área de transferência.", toastLength: Toast.LENGTH_LONG);
+                  },
+                  child: const TextApp('Encontre-me no Linkedin😼')),
+              const SizedBox(height: 32),
             ],
           ),
         ),

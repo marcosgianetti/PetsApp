@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pets_app/data/provider/colors/colors_app.dart';
+import 'package:pets_app/ui/components/compnents.dart';
 
 class ButtonGradient extends StatelessWidget {
   const ButtonGradient({
@@ -38,7 +39,7 @@ class ButtonGradient extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: loading
-            ? const CircularProgressIndicator.adaptive()
+            ? Container(width: width, child: CircularProgressIndicatorApp())
             : ElevatedButton(
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(

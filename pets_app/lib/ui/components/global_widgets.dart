@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:pets_app/ui/components/compnents.dart';
 
 class GlobalWidgets {
   static Future<void> msgAlert({
@@ -65,7 +66,7 @@ class GlobalWidgets {
                   const Divider(),
                   Container(
                     padding: const EdgeInsets.fromLTRB(10, 5, 10, 20),
-                    child: textSimpleSize(text: content ?? "", fontSize: 16, textcolor: Colors.black87),
+                    child: TextApp(content ?? "", size: 16),
                   ),
                 ],
               ),
@@ -88,13 +89,6 @@ class GlobalWidgets {
     return Text(text,
         textAlign: TextAlign.center,
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: fontSize, color: textcolor));
-  }
-
-  static Widget textSimpleSize({required String text, Color? textcolor, double? fontSize = 18}) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(text, style: TextStyle(color: textcolor, fontSize: fontSize)),
-    );
   }
 
   static Widget svgImage(

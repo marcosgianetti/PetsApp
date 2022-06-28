@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pets_app/data/provider/colors/colors_app.dart';
-import 'package:pets_app/ui/pages/login/login_screen.dart';
 
-import 'ui/pages/home/list_pets_screen.dart';
+import 'data/provider/colors/colors_app.dart';
+import 'ui/pages/listPets/list_pets_screen.dart';
+import 'ui/pages/login/login_screen.dart';
 import 'ui/pages/profile/profile.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Marvel',
+      title: 'Pets',
       theme: ThemeData(
         brightness: Brightness.light,
         appBarTheme: AppBarTheme(

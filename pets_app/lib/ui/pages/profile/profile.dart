@@ -15,22 +15,27 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // should recive [String, PetType]
+    // should recive [String (ID), PetType, String(Name)]
     final args = ModalRoute.of(context)!.settings.arguments as List<dynamic>;
     String id = args.first;
-    PetType petType = args.last;
+    PetType petType = args[1];
 
     return Scaffold(
       appBar: AppBar(
         title: Observer(builder: (_) {
-          return GlobalWidgets.textTitlecenterNoOver(text: petTypeMap.reverse[petType]!);
+          return TextApp(
+            "${petTypeMap.reverse[petType]!} - ${args.last ?? ""}",
+            fontWeight: FontWeight.bold,
+            size: 24,
+            textOverflow: TextOverflow.ellipsis,
+          );
         }),
       ),
       body: FutureBuilder(
         future: _controller.getProfileFromApi(
           context,
-          id: args.first,
-          petType: args.last,
+          id: id,
+          petType: petType,
         ),
         builder: (context, snapshot) {
           try {
@@ -45,7 +50,7 @@ class ProfileScreen extends StatelessWidget {
             }
             return const SomethingWrogn();
           } catch (e) {
-            if (kDebugMode) print("ERROR ProfileScreen: " + e.toString());
+            if (kDebugMode) print("ERROR ProfileScreen: $e");
             return const SomethingWrogn();
           }
         },
@@ -56,6 +61,7 @@ class ProfileScreen extends StatelessWidget {
   Widget _body(BuildContext context) {
     Pet pet = _controller.pet;
     String breeds = "";
+    double width = MediaQuery.of(context).size.width;
     pet.breeds.map((breed) => breed.name).toList().forEach((element) {
       breeds += "$element, ";
     });
@@ -79,13 +85,18 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
           ),
-          _textVisibleData(content: description),
+          TextApp(
+            description,
+            size: 28,
+            fontWeight: FontWeight.w500,
+            edgeInsets: const EdgeInsets.all(8),
+          ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               pet.breeds.isNotEmpty
                   ? SizedBox(
-                      width: MediaQuery.of(context).size.width,
+                      width: width,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -115,10 +126,20 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _textVisibleData({String description = "", required String content}) {
+  Widget _textVisibleData({String description = "", required String content, double? width}) {
     return Visibility(
       visible: content != "",
-      child: GlobalWidgets.textSimpleSize(text: "$description\n$content"),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextApp(
+            description,
+            edgeInsets: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+            fontWeight: FontWeight.w500,
+          ),
+          TextApp(content, edgeInsets: const EdgeInsets.fromLTRB(8, 0, 8, 8)),
+        ],
+      ),
     );
   }
 }

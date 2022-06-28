@@ -2,11 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:pets_app/data/provider/cacheLogin/cache_login.dart';
-import 'package:pets_app/data/provider/colors/colors_app.dart';
 
+import '../../../data/provider/cacheLogin/cache_login.dart';
+import '../../../data/provider/colors/colors_app.dart';
 import '../../../domain/entities/entities.dart';
 import '../../components/compnents.dart';
+import 'components/random_names.dart';
 import 'controller/list_pets_controller.dart';
 
 class ListPetsScreen extends StatefulWidget {
@@ -78,13 +79,15 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
                 }
                 if (alert != "") {
                   Fluttertoast.showToast(msg: alert);
+                } else {
+                  _refreshScreen();
                 }
               } catch (e) {
                 if (kDebugMode) print(e.toString());
               }
             },
             onCanceled: () {},
-            tooltip: 'Filtrar pe',
+            tooltip: 'Filtrar pet',
             icon: const Icon(Icons.filter_list_outlined),
           ),
           IconButton(
@@ -103,7 +106,7 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
         builder: (context, snapshot) {
           try {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator.adaptive());
+              return const Center(child: CircularProgressIndicatorApp());
             } else if (snapshot.hasData) {
               if (snapshot.data == false) {
                 const SomethingWrogn();
@@ -119,6 +122,10 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
         },
       ),
     );
+  }
+
+  _refreshScreen() {
+    setState(() {});
   }
 
   _scrollListener() async {
@@ -141,11 +148,11 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
               if (index == lenght - 1) {
                 return const Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Center(child: CircularProgressIndicator.adaptive()),
+                  child: Center(child: CircularProgressIndicatorApp()),
                 );
               } else {
                 Pet pet = _controller.listPet[index];
-                String description = "Sem informação";
+                String description = RandomNamesPet.getRandomNamePet(petType: pet.petType);
                 if (pet.breeds.isEmpty) {
                   if (pet.categories.isNotEmpty) {
                     description = pet.categories.first.name ?? "";
@@ -165,7 +172,11 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/profile', arguments: [pet.id.toString(), pet.petType]);
+                            Navigator.pushNamed(context, '/profile', arguments: [
+                              pet.id.toString(),
+                              pet.petType,
+                              description,
+                            ]);
                           },
                           child: ImageFromAPI(
                             url: pet.url ?? '',
