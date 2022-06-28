@@ -38,17 +38,25 @@ abstract class _LoginController with Store {
   }
 
   @action
-  void _changeLoadingState(bool loading) {
+  void changeLoadingState(bool loading) {
     this.loading = loading;
   }
 
   @action
   Future<void> getProfileFromApi(BuildContext context) async {
+    changeLoadingState(true);
     try {
-      _changeLoadingState(true);
+      errorText = "";
+      bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+          .hasMatch(textEmailLoginController.text);
+      if (!emailValid) {
+        errorText = "E-mail invalido";
+        changeLoadingState(false);
+        return;
+      }
       var response = await ReqAPI.get(endPoint: EndPoint.listUsers);
       await Future.delayed(const Duration(seconds: 1));
-      _changeLoadingState(false);
+      changeLoadingState(false);
       if (response.statusCode == 200) {
         users = userFromJson(response.body);
         bool containsEmailAtList = false;
@@ -74,7 +82,7 @@ abstract class _LoginController with Store {
         }
       }
     } catch (e) {
-      _changeLoadingState(false);
+      changeLoadingState(false);
       errorText = "Algo de inesperado aconteceu, tente mais tarde";
     }
   }

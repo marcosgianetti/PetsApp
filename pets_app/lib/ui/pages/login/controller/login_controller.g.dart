@@ -114,11 +114,11 @@ mixin _$LoginController on _LoginController, Store {
   }
 
   @override
-  void _changeLoadingState(bool loading) {
+  void changeLoadingState(bool loading) {
     final _$actionInfo = _$_LoginControllerActionController.startAction(
-        name: '_LoginController._changeLoadingState');
+        name: '_LoginController.changeLoadingState');
     try {
-      return super._changeLoadingState(loading);
+      return super.changeLoadingState(loading);
     } finally {
       _$_LoginControllerActionController.endAction(_$actionInfo);
     }

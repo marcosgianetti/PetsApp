@@ -96,11 +96,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     Observer(
                       builder: (_) {
                         return ButtonGradient(
-                          text: _controller.loading.toString(),
+                          text: "Login",
                           width: 300,
-                          loading: _controller.loading,
+                          child: _controller.loading ? const CircularProgressIndicatorApp() : null,
                           onClick: () {
-                            _controller.getProfileFromApi(context);
+                            if (!_controller.loading) {
+                              _controller.changeLoadingState(true);
+                              _controller.getProfileFromApi(context);
+                            } else {
+                              Fluttertoast.showToast(msg: "Entrando, aguarde...");
+                            }
                           },
                         );
                       },
