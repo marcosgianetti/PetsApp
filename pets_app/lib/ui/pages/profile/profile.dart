@@ -17,8 +17,8 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // should recive [String (ID), PetType, String(Name)]
     final args = ModalRoute.of(context)!.settings.arguments as List<dynamic>;
-    String id = args.first;
-    PetType petType = args[1];
+    String id = args.first??'';
+    PetType petType = args[1]??PetType.none;
 
     return Scaffold(
       appBar: AppBar(

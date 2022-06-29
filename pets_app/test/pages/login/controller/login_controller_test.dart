@@ -8,47 +8,42 @@ import 'package:http/testing.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:pets_app/domain/entities/entities.dart';
-import 'package:pets_app/ui/pages/home/controller/list_pets_controller.dart';
-
-import 'home_controller_test.mocks.dart';
+import 'package:pets_app/ui/pages/login/controller/login_controller.dart';
 
 class MockBuildContext extends Mock implements BuildContext {}
 
-class MockHomeController extends Mock implements ListPetController {}
+class MockHomeController extends Mock implements LoginController {}
 
 @GenerateMocks(
   [],
   customMocks: [
-    //MockSpec<HomeController>(returnNullOnMissingStub: true),
-    //MockSpec<Character>(returnNullOnMissingStub: true),
     MockSpec<Pet>(returnNullOnMissingStub: true),
-    //   MockSpec<http.Client>(returnNullOnMissingStub: true),
   ],
 )
 void main() {
-  ListPetController mockHomeController = MockHomeController();
+  LoginController mockHomeController = MockHomeController();
   final client = MockClient((request) async {
     return Response(jsonEncode({"message": "Erro desconhecido!"}), 404);
   });
 
   setUp(() {
-    mockHomeController = ListPetController();
+    mockHomeController = LoginController();
   });
   group('Home controller: ', () {
     test("Should change loading state ", () {
       expect(mockHomeController.loading, false);
 
-      mockHomeController.changeLoading(true);
+      mockHomeController.changeLoadingState(true);
 
       expect(mockHomeController.loading, true);
     });
 
-    test('Should add new characters at list (results)', () {
-      expect(mockHomeController.listPet.length, 0);
+    test("Should change checkbox state ", () {
+      expect(mockHomeController.rememberMe, true);
 
-      mockHomeController.addResults([MockPet()]);
+      mockHomeController.changeRememberMe();
 
-      expect(mockHomeController.listPet.length, 1);
+      expect(mockHomeController.rememberMe, false);
     });
   });
 }

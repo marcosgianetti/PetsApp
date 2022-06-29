@@ -5,4 +5,5 @@ enum PetType { dog, cat, none }
 final petTypeMap = EnumValues({
   "Gato": PetType.cat,
   "Cão": PetType.dog,
+  "Undefined": PetType.none,
 });
