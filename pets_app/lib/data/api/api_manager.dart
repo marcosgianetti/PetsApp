@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 import '../../domain/entities/entities.dart';
@@ -32,7 +34,7 @@ class ApiManager {
           headers: headers,
         );
       case PetType.none:
-        throw Exception('PetType should be informed');
+        return http.Response(jsonEncode({"message": "Não há dominio registrado para requisição!"}), 400);
     }
   }
 }

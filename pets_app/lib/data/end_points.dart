@@ -25,21 +25,20 @@ class EndPoint {
   static String imageID(String imageID) => "images/$imageID";
 
   static String listUsers = "https://raw.githubusercontent.com/marcosgianetti/PetsApp/main/emailsList/users.txt.txt";
+
+  static final _sizeTypeValues = EnumValues({
+    "tumb": SizeType.thumb,
+    "small": SizeType.small,
+    "med": SizeType.med,
+    "full": SizeType.full,
+  });
+  static final _oderTypeValues = EnumValues({
+    "random": OderType.random,
+    "asc": OderType.asc,
+    "desc": OderType.desc,
+  });
 }
 
 enum OderType { random, asc, desc }
 
-final _oderTypeValues = EnumValues({
-  "random": OderType.random,
-  "asc": OderType.asc,
-  "desc": OderType.desc,
-});
-
 enum SizeType { thumb, small, med, full }
-
-final _sizeTypeValues = EnumValues({
-  "tumb": SizeType.thumb,
-  "small": SizeType.small,
-  "med": SizeType.med,
-  "full": SizeType.full,
-});
