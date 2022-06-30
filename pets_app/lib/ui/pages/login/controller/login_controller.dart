@@ -47,7 +47,7 @@ abstract class _LoginController with Store {
   Future<void> getProfileFromApi(BuildContext context) async {
     changeLoadingState(true);
     try {
-      errorText = "";
+      errorText = null;
 
       bool emailValid = verifyEmailValid(textEmailLoginController.text);
       if (!emailValid) {

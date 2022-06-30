@@ -74,11 +74,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Observer(builder: (_) {
                       return PetTextFormField(
-                        controller: _controller.textEmailLoginController,
-                        hintText: "E-mail",
-                        keyboardType: TextInputType.emailAddress,
-                        errorText: _controller.errorText,
-                      );
+                          controller: _controller.textEmailLoginController,
+                          hintText: "E-mail",
+                          keyboardType: TextInputType.emailAddress,
+                          errorText: _controller.errorText,
+                          onFieldSubmitted: (value) {
+                            if (!_controller.loading) {
+                              _controller.changeLoadingState(true);
+                              _controller.getProfileFromApi(context);
+                            } else {
+                              Fluttertoast.showToast(msg: "Entrando, aguarde...");
+                            }
+                          });
                     }),
                     Observer(
                       builder: (_) {
