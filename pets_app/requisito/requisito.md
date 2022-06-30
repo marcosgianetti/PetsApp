@@ -25,5 +25,4 @@ Pode mostrar as informações que julgar necessário.
 ❌Criação de testes.
 ✔️Tela de listagem, oferecer a opção de listar somente cães ou gatos.
 ✔️LazyList
-❌Visualizar lista de e-mails cadastrados
 ✔️Visualizar meu lindekin 

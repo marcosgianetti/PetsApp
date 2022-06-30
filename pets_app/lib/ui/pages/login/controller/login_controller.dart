@@ -32,6 +32,7 @@ abstract class _LoginController with Store {
     if (user.email != null) {
       if (user.email != "") {
         textEmailLoginController.text = user.email!;
+        changeLoadingState(true);
         getProfileFromApi(context);
       }
     }
@@ -47,15 +48,17 @@ abstract class _LoginController with Store {
     changeLoadingState(true);
     try {
       errorText = "";
-      bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-          .hasMatch(textEmailLoginController.text);
+
+      bool emailValid = verifyEmailValid(textEmailLoginController.text);
       if (!emailValid) {
         errorText = "E-mail invalido";
         changeLoadingState(false);
         return;
       }
+
       var response = await ReqAPI.get(endPoint: EndPoint.listUsers);
       await Future.delayed(const Duration(seconds: 1));
+
       changeLoadingState(false);
       if (response.statusCode == 200) {
         users = userFromJson(response.body);
@@ -85,5 +88,9 @@ abstract class _LoginController with Store {
       changeLoadingState(false);
       errorText = "Algo de inesperado aconteceu, tente mais tarde";
     }
+  }
+
+  bool verifyEmailValid(String email) {
+    return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
   }
 }

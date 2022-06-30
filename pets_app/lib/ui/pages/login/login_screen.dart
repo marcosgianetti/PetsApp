@@ -113,8 +113,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 8),
-              const TextApp('Visualizar lista de e-mail'),
               TextButton(
                   onPressed: () {
                     LaunchUrlApp.launchURL("https://www.linkedin.com/in/marcos-gianetti/");

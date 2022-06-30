@@ -21,8 +21,8 @@ abstract class ListPetControllerBase with Store {
   List<PetType> petsSelected = <PetType>[PetType.cat, PetType.dog];
 
   @action
-  String changePetSelected(BuildContext context, {required PetType petType}) {
-    // Há somente um pet na lista e ele foi selecionado
+  String changePetSelected({required PetType petType}) {
+    // Há somente um pet na lista e ele foi selecionado?
     if (petsSelected.contains(petType) && petsSelected.length == 1) {
       return "Você deve selecionar ao menos um tipo de pet";
     } else {
@@ -35,7 +35,6 @@ abstract class ListPetControllerBase with Store {
       petsSelected = petsSelected;
     }
     listPet.clear();
-    //showPetsSelected(context);
     return "";
   }
 

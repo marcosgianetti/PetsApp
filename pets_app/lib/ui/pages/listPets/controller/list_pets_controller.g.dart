@@ -71,11 +71,11 @@ mixin _$ListPetController on ListPetControllerBase, Store {
       ActionController(name: 'ListPetControllerBase', context: context);
 
   @override
-  String changePetSelected(BuildContext context, {required PetType petType}) {
+  String changePetSelected({required PetType petType}) {
     final _$actionInfo = _$ListPetControllerBaseActionController.startAction(
         name: 'ListPetControllerBase.changePetSelected');
     try {
-      return super.changePetSelected(context, petType: petType);
+      return super.changePetSelected(petType: petType);
     } finally {
       _$ListPetControllerBaseActionController.endAction(_$actionInfo);
     }

@@ -39,7 +39,6 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
             return GlobalWidgets.textTitlecenterNoOver(text: strTitle);
           },
         ),
-        // backgroundColor: ColorsApp.secondCompanyColor,
         actions: [
           PopupMenuButton(
             itemBuilder: (BuildContext context) {
@@ -73,9 +72,9 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
               try {
                 String alert = "";
                 if (value == 0) {
-                  alert = _controller.changePetSelected(context, petType: PetType.dog);
+                  alert = _controller.changePetSelected(petType: PetType.dog);
                 } else if (value == 1) {
-                  alert = _controller.changePetSelected(context, petType: PetType.cat);
+                  alert = _controller.changePetSelected(petType: PetType.cat);
                 }
                 if (alert != "") {
                   Fluttertoast.showToast(msg: alert);
@@ -96,7 +95,7 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
               if (!mounted) return;
               Navigator.pushReplacementNamed(context, "/");
             },
-            icon: Icon(Icons.logout_rounded),
+            icon: const Icon(Icons.logout_rounded),
             tooltip: "Sair",
           )
         ],

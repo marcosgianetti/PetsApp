@@ -9,7 +9,20 @@ void main() {
     'Profile Screen: ',
     () {
       testWidgets('Should show circualar progress indicator on init screen', (WidgetTester tester) async {
-        await tester.pumpWidget(MaterialApp(home: ProfileScreen()));
+        String fakeId = faker.guid.guid();
+        String name = faker.internet.email();
+        await tester.pumpWidget(
+          MaterialApp(
+            onGenerateRoute: (settings) {
+              return MaterialPageRoute(
+                settings: RouteSettings(arguments: [fakeId, PetType.dog, name]),
+                builder: (context) {
+                  return ProfileScreen();
+                },
+              );
+            },
+          ),
+        );
         final circularProgressIndicator = find.byType(CircularProgressIndicator);
 
         expect(circularProgressIndicator, findsOneWidget);
