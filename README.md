@@ -15,7 +15,7 @@
 #### É exibida uma lazy list de pets, podendo ser escolhidos no icome de filtro localizado na appBar (Canto superior direito)
 
 ## Descrição do pet
-#### São exibidos as informações pertencente ao pet, Obs: A api possue cadastros sem iformações, somente imagem.
+#### São exibidos as informações pertencente ao pet, Obs: A api possui cadastros sem iformações, somente imagem.
 
 ## APK
 #### Você pode baixar o aquivo .apk sempre atualizado pelo programados nesse [link](https://github.com/marcosgianetti/PetsApp/blob/main/Apk/app-release.apk)
