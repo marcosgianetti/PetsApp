@@ -149,7 +149,7 @@ class ProfileScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          width: width != null ? width - 28 : null,
+          width: width != null ? width - 20 : null,
           child: TextApp(
             description,
             size: 40,
