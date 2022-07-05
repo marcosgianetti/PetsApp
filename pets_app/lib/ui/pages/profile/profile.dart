@@ -97,7 +97,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      _titleBody(description),
+                      _titleBody(description, width: width),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -143,17 +143,21 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _titleBody(String description, {bool defaultSetting = false}) {
+  Widget _titleBody(String description, {double? width, bool defaultSetting = false}) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TextApp(
-          description,
-          size: 40,
-          fontWeight: FontWeight.w400,
-          edgeInsets: const EdgeInsets.fromLTRB(20, 8, 8, 8),
-          color: defaultSetting ? null : ColorsApp.textColorWithSCC,
+        SizedBox(
+          width: width != null ? width - 28 : null,
+          child: TextApp(
+            description,
+            size: 40,
+            fontWeight: FontWeight.w400,
+            edgeInsets: const EdgeInsets.fromLTRB(20, 8, 0, 8),
+            color: defaultSetting ? null : ColorsApp.textColorWithSCC,
+            textOverflow: TextOverflow.clip,
+          ),
         ),
       ],
     );
