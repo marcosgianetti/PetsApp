@@ -39,6 +39,7 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
             return GlobalWidgets.textTitlecenterNoOver(text: strTitle);
           },
         ),
+        flexibleSpace: ColorsApp.flexibleSpaceAppBar(),
         actions: [
           PopupMenuButton(
             itemBuilder: (BuildContext context) {

@@ -7,11 +7,12 @@ class TextApp extends StatelessWidget {
     this.title, {
     Key? key,
     this.font = Font.tite,
-    this.size = 18,
+    this.size = 20,
     this.fontWeight,
     this.textAlign,
     this.edgeInsets,
     this.textOverflow = TextOverflow.clip,
+    this.color,
   }) : super(key: key);
   final String title;
   final dynamic font;
@@ -20,6 +21,7 @@ class TextApp extends StatelessWidget {
   final TextAlign? textAlign;
   final EdgeInsets? edgeInsets;
   final TextOverflow textOverflow;
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,11 +29,7 @@ class TextApp extends StatelessWidget {
       child: Text(
         title,
         overflow: textOverflow,
-        style: TextStyle(
-          fontFamily: font,
-          fontSize: size,
-          fontWeight: fontWeight,
-        ),
+        style: TextStyle(fontFamily: font, fontSize: size, fontWeight: fontWeight, color: color),
         textAlign: textAlign,
       ),
     );
