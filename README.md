@@ -21,4 +21,4 @@
 #### Você pode baixar o aquivo .apk sempre atualizado pelo programados nesse [link](https://github.com/marcosgianetti/PetsApp/blob/main/Apk/app-release.apk)
 
 ## Screenshots
-<img src="https://user-images.githubusercontent.com/37554588/176788383-b8168dc4-559e-42a5-9769-0c4b1db1863f.jpg" height="512"/> <img src="https://user-images.githubusercontent.com/37554588/176788345-5ed77cd5-fa21-427c-9bfd-a203e329d6a9.jpg" height="512"/> <img src="https://user-images.githubusercontent.com/37554588/176788393-50228ea5-595a-46c9-a1ca-9e08176e7391.jpg" height="512"/>
+<img src="https://user-images.githubusercontent.com/37554588/176788383-b8168dc4-559e-42a5-9769-0c4b1db1863f.jpg" height="512"/> <img src="https://user-images.githubusercontent.com/37554588/177238610-5f738022-c6da-4751-b857-192f11e5b093.jpeg" height="512"/> <img src="https://user-images.githubusercontent.com/37554588/177238621-418c7184-8100-4617-b933-c21dd963726d.jpeg" height="512"/>
