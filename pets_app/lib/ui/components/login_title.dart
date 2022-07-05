@@ -7,7 +7,7 @@ class TextApp extends StatelessWidget {
     this.title, {
     Key? key,
     this.font = Font.tite,
-    this.size = 20,
+    this.size = 18,
     this.fontWeight,
     this.textAlign,
     this.edgeInsets,

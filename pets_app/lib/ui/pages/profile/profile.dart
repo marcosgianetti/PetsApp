@@ -4,24 +4,46 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../data/provider/colors/colors_app.dart';
 import '../../../domain/entities/entities.dart';
+import '../../components/animation/animaton.dart';
 import '../../components/compnents.dart';
 import 'controller/profile_controller.dart';
 
-class ProfileScreen extends StatelessWidget {
-  ProfileScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
   static const routeName = '/profile';
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateMixin {
   final ProfileController _controller = ProfileController();
+  final AnimationControllerApp _animationController = AnimationControllerApp();
+
   PetType petType = PetType.none;
+  var args;
+  String id = "";
+
+  @override
+  void initState() {
+    // should recive [String (ID), PetType, String(Name)]
+
+    final List<AnimationController> _controllerAnimation = [
+      AnimationController(vsync: this),
+      AnimationController(vsync: this),
+      AnimationController(vsync: this),
+    ];
+    _animationController.initAnimations(controllerAnimation: _controllerAnimation);
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // should recive [String (ID), PetType, String(Name)]
-    final args = ModalRoute.of(context)!.settings.arguments as List<dynamic>;
-    String id = args.first ?? '';
-    PetType petType = args[1] ?? PetType.none;
-
+    args = ModalRoute.of(context)!.settings.arguments as List<dynamic>;
+    id = args.first ?? '';
+    petType = args[1] ?? PetType.none;
     return Scaffold(
       appBar: AppBar(
         title: TextApp(
@@ -79,65 +101,90 @@ class ProfileScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: ImageFromAPI(
-                url: pet.url ?? "",
-              ),
-            ),
-          ),
-          description == "Sem informação"
-              ? _titleBody(description, defaultSetting: true)
-              : Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(80.0)),
-                    color: ColorsApp.secondCompanyColor,
-                  ),
-                  child: Column(
-                    children: [
-                      _titleBody(description, width: width),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          pet.breeds.isNotEmpty
-                              ? SizedBox(
-                                  width: width,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      _textVisibleData(
-                                          content: pet.breeds.first.height.toString(), description: "Altura média: "),
-                                      _textVisibleData(
-                                          content: pet.breeds.first.weight.toString(), description: "Largura média: "),
-                                      _textVisibleData(
-                                          content: pet.breeds.first.countryCode ?? "", description: "Código do país: "),
-                                      _textVisibleData(
-                                          content: pet.breeds.first.lifeSpan ?? "", description: "Tempo de vida: "),
-                                      _textVisibleData(
-                                          content: pet.breeds.first.temperament ?? "", description: "Temperamento: "),
-                                      _textVisibleData(
-                                          content: pet.breeds.first.bredFor ?? "", description: "Criado para: "),
-                                    ],
-                                  ),
-                                )
-                              : Container(),
-                          pet.categories.isNotEmpty
-                              ? Column(
-                                  children: [
-                                    _textVisibleData(
-                                        content: pet.categories.first.name ?? "", description: "Categoria: "),
-                                    Container()
-                                  ],
-                                )
-                              : Container()
-                        ],
-                      ),
-                      const SizedBox(height: 32)
-                    ],
+          Observer(builder: (_) {
+            return AnimationWidget(
+              context: context,
+              opacity: _animationController.animation[1],
+              startFadeAnimation: _animationController.fadeAnimations[1],
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: ImageFromAPI(
+                    url: pet.url ?? "",
                   ),
                 ),
+              ),
+            );
+          }),
+          description == "Sem informação"
+              ? Observer(builder: (_) {
+                  return AnimationWidget(
+                    context: context,
+                    opacity: _animationController.animation[2],
+                    startFadeAnimation: _animationController.fadeAnimations[2],
+                    child: _titleBody(description, defaultSetting: true),
+                  );
+                })
+              : Observer(builder: (_) {
+                  return AnimationWidget(
+                    context: context,
+                    opacity: _animationController.animation[2],
+                    startFadeAnimation: _animationController.fadeAnimations[2],
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(80.0)),
+                        color: ColorsApp.secondCompanyColor,
+                      ),
+                      child: Column(
+                        children: [
+                          _titleBody(description, width: width),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              pet.breeds.isNotEmpty
+                                  ? SizedBox(
+                                      width: width,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          _textVisibleData(
+                                              content: pet.breeds.first.height.toString(),
+                                              description: "Altura média: "),
+                                          _textVisibleData(
+                                              content: pet.breeds.first.weight.toString(),
+                                              description: "Largura média: "),
+                                          _textVisibleData(
+                                              content: pet.breeds.first.countryCode ?? "",
+                                              description: "Código do país: "),
+                                          _textVisibleData(
+                                              content: pet.breeds.first.lifeSpan ?? "", description: "Tempo de vida: "),
+                                          _textVisibleData(
+                                              content: pet.breeds.first.temperament ?? "",
+                                              description: "Temperamento: "),
+                                          _textVisibleData(
+                                              content: pet.breeds.first.bredFor ?? "", description: "Criado para: "),
+                                        ],
+                                      ),
+                                    )
+                                  : Container(),
+                              pet.categories.isNotEmpty
+                                  ? Column(
+                                      children: [
+                                        _textVisibleData(
+                                            content: pet.categories.first.name ?? "", description: "Categoria: "),
+                                        Container()
+                                      ],
+                                    )
+                                  : Container()
+                            ],
+                          ),
+                          const SizedBox(height: 32)
+                        ],
+                      ),
+                    ),
+                  );
+                }),
         ],
       ),
     );
