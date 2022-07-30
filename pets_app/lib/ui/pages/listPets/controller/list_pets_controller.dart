@@ -52,8 +52,8 @@ abstract class ListPetControllerBase with Store {
   @action
   Future<bool?> getPetFromApi(BuildContext context, {PetType petType = PetType.dog}) async {
     changeLoading(true);
-    var response = await ApiManager.get(petType: petType, endPoint: EndPoint.listPets(page: page));
-    if (response.statusCode == 200) {
+    var response = await ApiManager().get(petType: petType, endPoint: EndPoint.listPets(page: page));
+    if (response!.statusCode == 200) {
       page++;
       if (listPet.isEmpty) {
         listPet = petsFromJson(response.body, petType: petType);
