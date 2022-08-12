@@ -102,7 +102,7 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
         ],
       ),
       body: FutureBuilder(
-        future: _controller.showPetsSelected(context),
+        future: _controller.showPetsSelected(),
         builder: (context, snapshot) {
           try {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -131,7 +131,7 @@ class _ListPetsScreenState extends State<ListPetsScreen> {
   _scrollListener() async {
     if (_scrollController.offset >= _scrollController.position.maxScrollExtent &&
         !_scrollController.position.outOfRange) {
-      await _controller.showPetsSelected(context);
+      await _controller.showPetsSelected();
     }
   }
 

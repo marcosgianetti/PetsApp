@@ -61,10 +61,10 @@ mixin _$ListPetController on ListPetControllerBase, Store {
       AsyncAction('ListPetControllerBase.getPetFromApi', context: context);
 
   @override
-  Future<bool?> getPetFromApi(BuildContext context,
-      {PetType petType = PetType.dog}) {
-    return _$getPetFromApiAsyncAction
-        .run(() => super.getPetFromApi(context, petType: petType));
+  Future<bool> getPetFromApi(
+      {PetType petType = PetType.dog, ApiManagerClient? apiManagerClient}) {
+    return _$getPetFromApiAsyncAction.run(() => super
+        .getPetFromApi(petType: petType, apiManagerClient: apiManagerClient));
   }
 
   late final _$ListPetControllerBaseActionController =
