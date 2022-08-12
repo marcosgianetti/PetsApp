@@ -18,10 +18,14 @@ abstract class _ProfileController with Store {
   Pet pet = Pet();
 
   @action
-  Future<bool> getProfileFromApi(BuildContext context, {required PetType petType, required String id}) async {
+  Future<bool> getProfileFromApi(
+    BuildContext context, {
+    required PetType petType,
+    required String id,
+  }) async {
     try {
       var response = await ApiManager().get(petType: petType, endPoint: EndPoint.imageID(id));
-      if (response!.statusCode == 200) {
+      if (response.statusCode == 200) {
         pet = Pet.fromJson(json.decode(response.body), petType: petType);
 
         return true;

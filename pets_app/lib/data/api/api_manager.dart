@@ -6,7 +6,7 @@ import '../../domain/entities/entities.dart';
 import 'api.dart';
 
 abstract class ApiManagerClient {
-  Future<http.Response?>? get({
+  Future<http.Response> get({
     required String endPoint,
     required PetType petType,
     Map<String, String>? headers,
@@ -19,7 +19,7 @@ class ApiManager implements ApiManagerClient {
   static Map<String, String> headersDog = {"x-api-key": "4b3fd568-0fa0-415d-8025-cb0901911c0e"};
 
   @override
-  Future<http.Response?>? get({
+  Future<http.Response> get({
     required String endPoint,
     required PetType petType,
     Map<String, String>? headers,
@@ -35,7 +35,7 @@ class ApiManager implements ApiManagerClient {
           headers.addAll(headersDog);
         }
         return await httpClient.get(
-          endPoint: 'https://api.thedogapi.com/v1/$endPoint/',
+          url: 'https://api.thedogapi.com/v1/$endPoint/',
           headers: headers,
         );
 
@@ -45,8 +45,9 @@ class ApiManager implements ApiManagerClient {
         } else {
           headers.addAll(headersCat);
         }
+
         return await httpClient.get(
-          endPoint: 'https://api.thecatapi.com/v1/$endPoint/',
+          url: 'https://api.thecatapi.com/v1/$endPoint/',
           headers: headers,
         );
       case PetType.none:

@@ -5,15 +5,15 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 abstract class HttpClient {
-  Future<http.Response>? get({required String endPoint, Map<String, String> headers = const {}});
+  Future<http.Response> get({required String url, Map<String, String> headers = const {}});
 }
 
 class ReqAPI implements HttpClient {
   // @GET
   @override
-  Future<http.Response>? get({required String endPoint, Map<String, String> headers = const {}}) async {
+  Future<http.Response> get({required String url, Map<String, String> headers = const {}}) async {
     return await _requisitionHandling(
-      endPoint: endPoint,
+      endPoint: url,
       headers: headers,
     );
   }

@@ -56,11 +56,11 @@ abstract class _LoginController with Store {
         return;
       }
 
-      var response = await ReqAPI().get(endPoint: EndPoint.listUsers);
+      var response = await ReqAPI().get(url: EndPoint.listUsers);
       await Future.delayed(const Duration(seconds: 1));
 
       changeLoadingState(false);
-      if (response!.statusCode == 200) {
+      if (response.statusCode == 200) {
         users = userFromJson(response.body);
         bool containsEmailAtList = false;
         for (var element in users) {
