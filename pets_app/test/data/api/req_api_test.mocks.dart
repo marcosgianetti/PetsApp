@@ -20,11 +20,11 @@ import 'package:pets_app/data/api/req_api.dart' as _i3;
 
 class _FakeResponse_0 extends _i1.Fake implements _i2.Response {}
 
-/// A class which mocks [ReqAPI].
+/// A class which mocks [HttpClientAdapter].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockReqAPI extends _i1.Mock implements _i3.ReqAPI {
-  MockReqAPI() {
+class MockHttpClientAdapter extends _i1.Mock implements _i3.HttpClientAdapter {
+  MockHttpClientAdapter() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -37,10 +37,10 @@ class MockReqAPI extends _i1.Mock implements _i3.ReqAPI {
           as _i4.Future<_i2.Response>);
 }
 
-/// A class which mocks [ReqAPI].
+/// A class which mocks [HttpClientAdapter].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockReqAPIRelaxed extends _i1.Mock implements _i3.ReqAPI {
+class MockReqAPIRelaxed extends _i1.Mock implements _i3.HttpClientAdapter {
   MockReqAPIRelaxed() {
     _i1.throwOnMissingStub(this);
   }

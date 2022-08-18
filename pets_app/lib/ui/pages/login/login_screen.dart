@@ -20,8 +20,15 @@ class _LoginScreenState extends State<LoginScreen> {
   final LoginController _controller = LoginController();
   @override
   void initState() {
-    _controller.checkCache(context);
+    initStateAsync();
     super.initState();
+  }
+
+  Future<void> initStateAsync() async {
+    bool loginSucess = await _controller.checkCache(context);
+    if (loginSucess && mounted) {
+      goToNextPage();
+    }
   }
 
   @override
@@ -79,12 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           keyboardType: TextInputType.emailAddress,
                           errorText: _controller.errorText,
                           onFieldSubmitted: (value) {
-                            if (!_controller.loading) {
-                              _controller.changeLoadingState(true);
-                              _controller.getProfileFromApi(context);
-                            } else {
-                              Fluttertoast.showToast(msg: "Entrando, aguarde...");
-                            }
+                            tapLogin();
                           });
                     }),
                     Observer(
@@ -107,12 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 300,
                           child: _controller.loading ? const CircularProgressIndicatorApp() : null,
                           onClick: () {
-                            if (!_controller.loading) {
-                              _controller.changeLoadingState(true);
-                              _controller.getProfileFromApi(context);
-                            } else {
-                              Fluttertoast.showToast(msg: "Entrando, aguarde...");
-                            }
+                            tapLogin();
                           },
                         );
                       },
@@ -136,5 +133,21 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> tapLogin() async {
+    if (!_controller.loading) {
+      _controller.changeLoadingState(true);
+      bool loginSuccess = await _controller.getProfileFromApi();
+      if (loginSuccess) {
+        goToNextPage();
+      }
+    } else {
+      Fluttertoast.showToast(msg: "Entrando, aguarde...");
+    }
+  }
+
+  goToNextPage() {
+    Navigator.pushReplacementNamed(context, '/pets');
   }
 }

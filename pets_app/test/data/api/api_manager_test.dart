@@ -11,7 +11,10 @@ import 'package:pets_app/domain/entities/entities.dart';
 import 'api_manager_test.mocks.dart';
 
 //class HttpClientSpy extends Mock implements ReqAPI {}
-@GenerateMocks([], customMocks: [MockSpec<HttpClient>(returnNullOnMissingStub: true)])
+@GenerateMocks([], customMocks: [
+  MockSpec<HttpClient>(returnNullOnMissingStub: true),
+  MockSpec<ApiManagerClient>(returnNullOnMissingStub: true),
+])
 void main() {
   late ApiManagerClient sut;
   late MockHttpClient httpClientSpy;

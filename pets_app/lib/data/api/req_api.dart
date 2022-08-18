@@ -8,7 +8,7 @@ abstract class HttpClient {
   Future<http.Response> get({required String url, Map<String, String> headers = const {}});
 }
 
-class ReqAPI implements HttpClient {
+class HttpClientAdapter implements HttpClient {
   // @GET
   @override
   Future<http.Response> get({required String url, Map<String, String> headers = const {}}) async {

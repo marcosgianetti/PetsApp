@@ -4,9 +4,9 @@ import 'package:mockito/mockito.dart';
 import 'package:pets_app/data/api/api.dart';
 
 @GenerateMocks(
-  [ReqAPI],
+  [HttpClientAdapter],
   customMocks: [
-    MockSpec<ReqAPI>(as: #MockReqAPIRelaxed),
+    MockSpec<HttpClientAdapter>(as: #MockReqAPIRelaxed),
   ],
 )
 void main() {

@@ -6,7 +6,8 @@ import 'dart:async' as _i4;
 
 import 'package:http/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:pets_app/data/api/req_api.dart' as _i3;
+import 'package:pets_app/data/api/api.dart' as _i3;
+import 'package:pets_app/domain/entities/entities.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -29,6 +30,27 @@ class MockHttpClient extends _i1.Mock implements _i3.HttpClient {
           {String? url, Map<String, String>? headers = const {}}) =>
       (super.noSuchMethod(
               Invocation.method(#get, [], {#url: url, #headers: headers}),
+              returnValue: Future<_i2.Response>.value(_FakeResponse_0()))
+          as _i4.Future<_i2.Response>);
+}
+
+/// A class which mocks [ApiManagerClient].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockApiManagerClient extends _i1.Mock implements _i3.ApiManagerClient {
+  @override
+  _i4.Future<_i2.Response> get(
+          {String? endPoint,
+          _i5.PetType? petType,
+          Map<String, String>? headers,
+          _i3.HttpClient? httpClient}) =>
+      (super.noSuchMethod(
+              Invocation.method(#get, [], {
+                #endPoint: endPoint,
+                #petType: petType,
+                #headers: headers,
+                #httpClient: httpClient
+              }),
               returnValue: Future<_i2.Response>.value(_FakeResponse_0()))
           as _i4.Future<_i2.Response>);
 }

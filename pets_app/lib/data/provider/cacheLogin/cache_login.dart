@@ -3,6 +3,11 @@ import 'package:path_provider/path_provider.dart';
 
 import '../../../domain/entities/entities.dart';
 
+abstract class ICacheLogin {
+  Future setLoginResponse({required User user});
+  Future<User> getLoginCache();
+}
+
 class CacheLogin {
   static Future setLoginResponse({required User user}) async {
     await _initBox();

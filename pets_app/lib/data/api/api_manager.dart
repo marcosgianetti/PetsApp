@@ -25,7 +25,7 @@ class ApiManager implements ApiManagerClient {
     Map<String, String>? headers,
     HttpClient? httpClient,
   }) async {
-    httpClient = httpClient ?? ReqAPI();
+    httpClient = httpClient ?? HttpClientAdapter();
 
     switch (petType) {
       case PetType.dog:

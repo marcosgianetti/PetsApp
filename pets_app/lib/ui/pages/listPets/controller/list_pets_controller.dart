@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 import 'package:mobx/mobx.dart';
@@ -6,7 +5,6 @@ import 'package:mobx/mobx.dart';
 import '../../../../data/api/api.dart';
 import '../../../../data/end_points.dart';
 import '../../../../domain/entities/entities.dart';
-import '../../../components/compnents.dart';
 
 part 'list_pets_controller.g.dart';
 
