@@ -94,9 +94,9 @@ mixin _$LoginController on _LoginController, Store {
       AsyncAction('_LoginController.getProfileFromApi', context: context);
 
   @override
-  Future<void> getProfileFromApi(BuildContext context) {
+  Future<bool> getProfileFromApi({HttpClient? httpClient}) {
     return _$getProfileFromApiAsyncAction
-        .run(() => super.getProfileFromApi(context));
+        .run(() => super.getProfileFromApi(httpClient: httpClient));
   }
 
   late final _$_LoginControllerActionController =

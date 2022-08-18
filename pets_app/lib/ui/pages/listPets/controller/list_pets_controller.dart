@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 import 'package:mobx/mobx.dart';
 
 import '../../../../data/api/api.dart';
 import '../../../../data/end_points.dart';
 import '../../../../domain/entities/entities.dart';
-import '../../../components/compnents.dart';
 
 part 'list_pets_controller.g.dart';
 
@@ -20,6 +19,7 @@ abstract class ListPetControllerBase with Store {
   @observable
   List<PetType> petsSelected = <PetType>[PetType.cat, PetType.dog];
 
+  ///✅
   @action
   String changePetSelected({required PetType petType}) {
     // Há somente um pet na lista e ele foi selecionado?
@@ -38,38 +38,45 @@ abstract class ListPetControllerBase with Store {
     return "";
   }
 
-  Future<bool> showPetsSelected(BuildContext context) async {
+  ///❌
+  Future<bool> showPetsSelected({ApiManagerClient? apiManagerClient}) async {
     try {
-      await Future.forEach(petsSelected, (item) async {
-        await getPetFromApi(context, petType: item as PetType);
+      await Future.forEach<PetType>(petsSelected, (item) async {
+        await getPetFromApi(petType: item, apiManagerClient: apiManagerClient);
       });
+      page++;
       return true;
     } catch (error) {
       return false;
     }
   }
 
+  ///✅
   @action
-  Future<bool?> getPetFromApi(BuildContext context, {PetType petType = PetType.dog}) async {
+  Future<bool> getPetFromApi({PetType petType = PetType.dog, ApiManagerClient? apiManagerClient}) async {
     changeLoading(true);
-    var response = await ApiManager.get(petType: petType, endPoint: EndPoint.listPets(page: page));
+    apiManagerClient = apiManagerClient ?? ApiManager();
+
+    Response response = await apiManagerClient.get(petType: petType, endPoint: EndPoint.listPets(page: page));
+
     if (response.statusCode == 200) {
-      page++;
-      if (listPet.isEmpty) {
-        listPet = petsFromJson(response.body, petType: petType);
-      } else {
-        addResults(petsFromJson(response.body, petType: petType));
+      if (response.body != "") {
+        if (listPet.isEmpty) {
+          listPet = petsFromJson(response.body, petType: petType);
+        } else {
+          addResults(petsFromJson(response.body, petType: petType));
+        }
       }
       changeLoading(false);
       return true;
     } else {
       if (response.body.contains('message')) {
-        GlobalWidgets.msgAlert(context: context, title: apiErrorFromJson(response.body).message);
+        // GlobalWidgets.msgAlert(context: context, title: apiErrorFromJson(response.body).message);
         changeLoading(false);
 
         return false;
       } else {
-        unknownError(context);
+        // unknownError();
         changeLoading(false);
 
         return false;
@@ -77,6 +84,7 @@ abstract class ListPetControllerBase with Store {
     }
   }
 
+  ///✅
   @action
   void addResults(List<Pet> newPets) {
     for (var newPet in newPets) {
@@ -85,6 +93,7 @@ abstract class ListPetControllerBase with Store {
     listPet = listPet;
   }
 
+  ///✅
   @action
   changeLoading(bool value) {
     loading = value;

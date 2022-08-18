@@ -4,11 +4,16 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-class ReqAPI {
+abstract class HttpClient {
+  Future<http.Response> get({required String url, Map<String, String> headers = const {}});
+}
+
+class HttpClientAdapter implements HttpClient {
   // @GET
-  static Future<http.Response> get({required String endPoint, Map<String, String> headers = const {}}) async {
+  @override
+  Future<http.Response> get({required String url, Map<String, String> headers = const {}}) async {
     return await _requisitionHandling(
-      endPoint: endPoint,
+      endPoint: url,
       headers: headers,
     );
   }
@@ -19,13 +24,9 @@ class ReqAPI {
 
   static _requisitionHandling({
     required String endPoint,
-    // ReqTypes typeRequest = ReqTypes.get,
     Map<String, String> headers = const {},
   }) async {
-    Map<String, String> headersAdd = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    };
+    Map<String, String> headersAdd = {'Content-Type': 'application/json', 'Accept': 'application/json'};
     headersAdd.addAll(headers);
 
     var responseDefault = http.Response(jsonEncode({"message": "Erro desconhecido!"}), 404);

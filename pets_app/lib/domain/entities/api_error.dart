@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 ApiError apiErrorFromJson(String str) => ApiError.fromJson(json.decode(str));
+String apiErrorToJson(ApiError data) => json.encode(data.toJson());
 
 class ApiError {
   ApiError({
@@ -15,4 +16,9 @@ class ApiError {
         code: json["code"],
         message: json["message"],
       );
+
+  Map<String, dynamic> toJson() => {
+        "code": code,
+        "message": message,
+      };
 }
