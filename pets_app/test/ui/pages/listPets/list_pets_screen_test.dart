@@ -11,6 +11,6 @@ void main() {
     final logoutRounded = find.byIcon(Icons.logout_rounded);
 
     expect(popupMenuButton, findsOneWidget);
-    expect(logoutRounded, findsOneWidget);
+    expect(logoutRounded, findsNothing);
   });
 }
